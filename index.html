@@ -1,569 +1,1464 @@
-<!doctype html>
-<html lang="ru">
-<head>
-<meta charset="utf-8">
-<meta name="viewport" content="width=device-width, initial-scale=1">
-<title>Scum &amp; Villainy: one-pager</title>
+<!doctype html><html><head><meta charset=utf8><meta name=viewport content="width=device-width,initial-scale=1,viewport-fit=cover"><style>:root{color-scheme:light;box-sizing:border-box;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}html{scroll-padding-top:env(safe-area-inset-top,0px)}body{margin:0;padding:0;font:14px -apple-system,BlinkMacSystemFont,sans-serif;background:#fff;color:#000}img{max-width:100%}[hidden]:not([hidden=until-found i]){display:none!important}</style></head><body>
+<title>Цеттелькастен станционного бара</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Golos+Text:wght@400;500;600&family=Unbounded:wght@500;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Golos+Text:wght@400;500;600&family=IBM+Plex+Mono:wght@400;500&family=Jura:wght@600;700&display=swap">
 <style>
-  :root {
-    --space: #0b171c;       /* космос за окном */
-    --bottle: #12261f;      /* стена бара */
-    --bottle-lift: #1b3a30; /* панели */
-    --rule: #2e5446;
-    --paper: #ede6d3;       /* листки контрактов, основной текст */
-    --paper-dim: #b9c4b6;
-    --ink: #14201b;
-    --brass: #c8a04a;       /* латунь */
-    --neon: #f2668b;        /* вывеска */
-    --neon-core: #ffd9e3;
-    --stamp: #b82f4c;
-    --night: #7fb7c9;
-    --sticky-a: #f1d06a;
-    --sticky-b: #f3a9b9;
-
-    --display: "Unbounded", "Arial Black", system-ui, sans-serif;
-    --text: "Golos Text", system-ui, -apple-system, "Segoe UI", Roboto, sans-serif;
+/* Layout: станционное кольцо — 14 блоков по кругу, карточки пристыкованы к своему блоку изнутри, ссылки идут хордами; рядом — карточка-слип */
+:root {
+  --bg: #EDF0F2;
+  --panel: #F9FAFB;
+  --ink: #18212B;
+  --muted: #5A6774;
+  --line: #C9D2DA;
+  --hub: #2D4A63;
+  --empty: #84919E;
+  --accent: #8E5A0E;
+  --accent-soft: rgba(142, 90, 14, 0.10);
+  --shadow: rgba(24, 33, 43, 0.18);
+  --font-display: "Jura", "Segoe UI", system-ui, sans-serif;
+  --font-body: "Golos Text", system-ui, -apple-system, "Segoe UI", Roboto, sans-serif;
+  --font-mono: "IBM Plex Mono", ui-monospace, "SFMono-Regular", Menlo, Consolas, monospace;
+}
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme="light"]) {
+    --bg: #0F151B;
+    --panel: #151D25;
+    --ink: #E2E7EB;
+    --muted: #8B98A5;
+    --line: #2A3642;
+    --hub: #8DB1CC;
+    --empty: #5E6C7A;
+    --accent: #E0A44A;
+    --accent-soft: rgba(224, 164, 74, 0.12);
+    --shadow: rgba(0, 0, 0, 0.55);
+    color-scheme: dark;
   }
+}
+:root[data-theme="dark"] {
+  --bg: #0F151B;
+  --panel: #151D25;
+  --ink: #E2E7EB;
+  --muted: #8B98A5;
+  --line: #2A3642;
+  --hub: #8DB1CC;
+  --empty: #5E6C7A;
+  --accent: #E0A44A;
+  --accent-soft: rgba(224, 164, 74, 0.12);
+  --shadow: rgba(0, 0, 0, 0.55);
+  color-scheme: dark;
+}
 
-  * { box-sizing: border-box; }
-  html { background: var(--bottle); }
+* { box-sizing: border-box; }
+html { -webkit-text-size-adjust: 100%; }
+body {
+  background: var(--bg);
+  color: var(--ink);
+  font-family: var(--font-body);
+  font-size: 15px;
+  line-height: 1.55;
+}
+a { color: var(--accent); }
+a:focus-visible, button:focus-visible { outline: 2px solid var(--accent); outline-offset: 2px; border-radius: 3px; }
 
-  body {
-    margin: 0;
-    background: var(--bottle);
-    color: var(--paper);
-    font-family: var(--text);
-    font-size: 1.0625rem;
-    line-height: 1.6;
-  }
+.wrap { max-width: 1240px; margin: 0 auto; padding-inline: 16px; padding-block: 18px 48px; }
+@media (min-width: 640px) { .wrap { padding-inline: 28px; } }
 
-  .wrap {
-    max-width: 50rem;
-    margin: 0 auto;
-    padding: 0 clamp(1.25rem, 5vw, 2.5rem);
-  }
+/* шапка */
+.top {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: flex-end;
+  justify-content: space-between;
+  gap: 10px 28px;
+  padding-block: 6px 20px;
+}
+.eyebrow {
+  margin: 0;
+  font-family: var(--font-mono);
+  font-size: 0.75rem;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--muted);
+}
+h1 {
+  margin: 6px 0;
+  font-family: var(--font-display);
+  font-weight: 700;
+  font-size: clamp(2rem, 5vw, 2.75rem);
+  line-height: 1;
+  letter-spacing: 0.01em;
+  text-wrap: balance;
+}
+.lede { margin: 0; color: var(--muted); max-width: 52ch; }
+.meta { display: flex; flex-wrap: wrap; align-items: baseline; gap: 6px 18px; }
+.stats { font-family: var(--font-mono); font-size: 0.8rem; color: var(--muted); font-variant-numeric: tabular-nums; }
+.ext { font-weight: 600; text-decoration: none; }
+.ext:hover { text-decoration: underline; text-underline-offset: 3px; }
 
-  /* ---------- Окно в космос и неоновая вывеска ---------- */
-  .sky {
-    padding: clamp(3rem, 9vw, 6rem) 0 clamp(6rem, 12vw, 8rem);
-    background-color: var(--space);
-    background-image:
-      radial-gradient(1.5px 1.5px at 24px 36px, #ffffffcc, transparent 60%),
-      radial-gradient(1px 1px at 130px 82px, #ffffff99, transparent 60%),
-      radial-gradient(1px 1px at 76px 160px, #ffffff80, transparent 60%),
-      radial-gradient(2px 2px at 190px 190px, #c8a04acc, transparent 60%),
-      radial-gradient(1px 1px at 250px 40px, #ffffff80, transparent 60%),
-      radial-gradient(1.5px 1.5px at 300px 230px, #7fb7c9cc, transparent 60%),
-      linear-gradient(180deg, transparent 55%, var(--bottle) 100%);
-    background-size: 220px 220px, 220px 220px, 260px 260px, 340px 340px, 340px 340px, 380px 380px, 100% 100%;
-  }
+/* раскладка */
+.layout { display: grid; grid-template-columns: minmax(0, 1fr); gap: 22px; align-items: start; }
+.graph-col { min-width: 0; }
+.graph-panel {
+  position: relative;
+  width: 100%;
+  aspect-ratio: 1 / 1;
+  max-height: 440px;
+  background: var(--panel);
+  border: 1px solid var(--line);
+  border-radius: 10px;
+  overflow: hidden;
+}
+#graph { display: block; width: 100%; height: 100%; cursor: grab; }
+#graph:active { cursor: grabbing; }
+.caption { margin: 8px 2px 0; font-size: 0.8rem; color: var(--muted); max-width: 68ch; }
+@media (min-width: 900px) {
+  .layout { grid-template-columns: minmax(0, 1.25fr) minmax(320px, 1fr); gap: 28px; }
+  .graph-col { position: sticky; top: calc(env(safe-area-inset-top, 0px) + 12px); }
+  .graph-panel { aspect-ratio: auto; height: min(calc(100vh - 160px), 760px); min-height: 420px; max-height: none; }
+}
 
-  h1 {
-    margin: 0;
-    font-family: var(--display);
-    font-weight: 700;
-    font-size: clamp(2.2rem, 8.5vw, 4.5rem);
-    line-height: 1.1;
-    letter-spacing: -0.01em;
-    color: var(--neon-core);
-    text-shadow:
-      0 0 4px var(--neon-core),
-      0 0 14px var(--neon),
-      0 0 34px var(--neon),
-      0 0 70px #f2668b99;
-    animation: tube 2.2s linear 1 both;
-  }
+/* граф */
+.ring { fill: none; stroke: var(--line); stroke-width: 2px; vector-effect: non-scaling-stroke; }
+.hull { fill: none; stroke: var(--line); stroke-width: 1px; stroke-dasharray: 1 5; vector-effect: non-scaling-stroke; }
+.dock { stroke: var(--line); stroke-width: 1.5px; vector-effect: non-scaling-stroke; }
+.dock.is-lit { stroke: var(--accent); }
+.chord { fill: none; stroke: var(--accent); stroke-opacity: 0.45; stroke-width: 1.5px; vector-effect: non-scaling-stroke; }
+.chord.is-lit { stroke-opacity: 1; stroke-width: 2.5px; }
+.node { cursor: pointer; outline: none; }
+.node .hit { fill: transparent; pointer-events: all; }
+.node .halo { fill: none; stroke: transparent; stroke-width: 2px; vector-effect: non-scaling-stroke; }
+.node.is-selected .halo { stroke: var(--accent); }
+.node:focus-visible .halo { stroke: var(--accent); stroke-dasharray: 3 3; }
+.hub .dot { fill: var(--hub); }
+.hub.is-empty .dot { fill: var(--panel); stroke: var(--empty); stroke-width: 2px; vector-effect: non-scaling-stroke; }
+.hub.is-next .dot { stroke: var(--accent); stroke-dasharray: 3 2; }
+.card .dot { fill: var(--accent); }
+.card.status-cut .dot { fill: var(--empty); }
+.card.status-cut .card-label { fill: var(--muted); }
+.card.status-next .dot { fill: var(--panel); stroke: var(--accent); stroke-width: 2px; vector-effect: non-scaling-stroke; }
+.badge {
+  display: inline-block;
+  margin-inline-end: 6px;
+  padding: 0 8px;
+  font-family: var(--font-mono);
+  font-size: 0.72rem;
+  line-height: 1.6;
+  border: 1px solid var(--line);
+  border-radius: 999px;
+  color: var(--muted);
+  white-space: nowrap;
+}
+.badge.next { border-color: var(--accent); color: var(--accent); }
+.slip-left { display: inline-flex; align-items: baseline; gap: 10px; }
+.hub-label, .card-label { paint-order: stroke; stroke: var(--panel); stroke-linejoin: round; pointer-events: none; }
+.hub-label {
+  font-family: var(--font-display);
+  font-weight: 700;
+  font-size: var(--hub-fs, 26px);
+  fill: var(--ink);
+  stroke-width: calc(var(--hub-fs, 26px) * 0.24);
+}
+.hub.is-empty .hub-label { fill: var(--muted); font-weight: 600; }
+.card-label {
+  font-family: var(--font-body);
+  font-weight: 500;
+  font-size: var(--card-fs, 22px);
+  fill: var(--ink);
+  stroke-width: calc(var(--card-fs, 22px) * 0.24);
+}
+.hub-label .num, .card-label .num { font-family: var(--font-mono); font-weight: 500; fill: var(--muted); }
+.node.label-hidden text { display: none; }
+.node.label-short .ttl { display: none; }
+.has-selection .node:not(.is-selected):not(.is-neighbor) { opacity: 0.5; }
 
-  @keyframes tube {
-    0%   { opacity: 0.15; }
-    6%   { opacity: 1; }
-    9%   { opacity: 0.2; }
-    13%  { opacity: 1; }
-    34%  { opacity: 1; }
-    37%  { opacity: 0.35; }
-    40%  { opacity: 1; }
-    100% { opacity: 1; }
-  }
+.zoom-ctl { position: absolute; right: 10px; bottom: 10px; display: flex; gap: 6px; }
+.zoom-ctl button {
+  height: 32px;
+  min-width: 32px;
+  padding: 0 10px;
+  font-family: var(--font-mono);
+  font-size: 0.8rem;
+  color: var(--ink);
+  background: var(--bg);
+  border: 1px solid var(--line);
+  border-radius: 6px;
+  cursor: pointer;
+}
+.zoom-ctl button:hover { border-color: var(--accent); }
+.graph-panel.is-offline::after {
+  content: "Граф не загрузился. Карточки открываются из списка рядом.";
+  position: absolute;
+  inset: 0;
+  display: grid;
+  place-items: center;
+  padding: 24px;
+  text-align: center;
+  color: var(--muted);
+}
+.graph-panel.is-offline .zoom-ctl { display: none; }
 
-  @media (prefers-reduced-motion: reduce) {
-    h1 { animation: none; }
-  }
+/* правая панель */
+.pane { min-width: 0; scroll-margin-top: 12px; }
+.crumbs { margin: 0; font-size: 0.82rem; color: var(--muted); }
+.crumbs a { color: inherit; text-decoration: underline; text-decoration-color: var(--line); text-underline-offset: 3px; }
+.crumbs a:hover { color: var(--ink); }
+.view > h2 {
+  margin: 1.6rem 0 0.6rem;
+  font-family: var(--font-display);
+  font-weight: 700;
+  font-size: 1.15rem;
+  letter-spacing: 0.02em;
+  text-wrap: balance;
+}
+.view > .crumbs + h2 { margin-top: 0.5rem; }
+.view > h2.view-title { font-size: 1.8rem; line-height: 1.1; margin-bottom: 1rem; }
 
-  .meta {
-    margin: 1.25rem 0 0;
-    color: var(--paper-dim);
-    font-size: 0.95rem;
-  }
+.blocks { list-style: none; margin: 0; padding: 0; border-top: 1px solid var(--line); }
+.brow {
+  display: grid;
+  grid-template-columns: 2em minmax(0, 1fr) auto;
+  align-items: baseline;
+  gap: 12px;
+  padding: 9px 8px;
+  border-bottom: 1px solid var(--line);
+  color: var(--ink);
+  text-decoration: none;
+}
+.brow:hover { background: var(--accent-soft); }
+.bnum { font-family: var(--font-mono); font-size: 0.85rem; color: var(--muted); font-variant-numeric: tabular-nums; }
+.bname { font-weight: 500; }
+.bcount { font-size: 0.8rem; color: var(--accent); white-space: nowrap; }
+.brow.is-empty .bname { color: var(--muted); font-weight: 400; }
+.brow.is-empty .bcount { color: var(--muted); }
 
-  /* ---------- Питч: листок на доске контрактов ---------- */
-  .pinned {
-    margin: clamp(-5rem, -8vw, -3.5rem) 0 3.5rem;
-    transform: rotate(-0.8deg);
-    filter: drop-shadow(0 10px 0 rgba(0, 0, 0, 0.3));
-  }
+.clist { list-style: none; margin: 0; padding: 0; display: grid; gap: 12px; }
+.clist.tight { gap: 6px; }
+.clist li { display: grid; gap: 2px; min-width: 0; }
+.clink { display: inline-flex; align-items: baseline; gap: 10px; color: var(--ink); text-decoration: none; font-weight: 600; }
+.clink:hover .ctitle { text-decoration: underline; text-decoration-color: var(--accent); text-underline-offset: 3px; }
+.cid { font-family: var(--font-mono); font-weight: 500; font-size: 0.85rem; color: var(--accent); font-variant-numeric: tabular-nums; }
+.cmeta { color: var(--muted); font-size: 0.86rem; }
+.empty { margin: 0; color: var(--muted); }
+.note { margin: 1.4rem 0 0; font-size: 0.86rem; color: var(--muted); }
 
-  .notice {
-    position: relative;
-    padding: 2.5rem clamp(1.25rem, 4vw, 2.5rem) 3rem;
-    background: var(--paper);
-    color: var(--ink);
-    -webkit-mask: conic-gradient(from -45deg at bottom, #0000, #000 1deg 89deg, #0000 90deg) 50% / 18px 100%;
-            mask: conic-gradient(from -45deg at bottom, #0000, #000 1deg 89deg, #0000 90deg) 50% / 18px 100%;
-  }
+/* карточка-слип */
+.slip {
+  max-width: 62ch;
+  margin-top: 10px;
+  padding: 0 22px 22px;
+  background: var(--panel);
+  border: 1px solid var(--line);
+  border-radius: 6px;
+  box-shadow: 0 22px 34px -28px var(--shadow);
+}
+.slip-head {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  align-items: baseline;
+  gap: 4px 16px;
+  padding: 14px 0 10px;
+  border-bottom: 2px solid var(--accent);
+  font-family: var(--font-mono);
+  font-size: 0.78rem;
+  color: var(--muted);
+}
+.slip-id { font-size: 1rem; font-weight: 500; color: var(--accent); font-variant-numeric: tabular-nums; }
+.slip-title {
+  margin: 18px 0 2px;
+  font-family: var(--font-display);
+  font-weight: 700;
+  font-size: 1.75rem;
+  line-height: 1.1;
+  text-wrap: balance;
+}
+.field { margin-top: 18px; }
+.field h3 {
+  margin: 0 0 4px;
+  font-size: 0.72rem;
+  font-weight: 600;
+  letter-spacing: 0.09em;
+  text-transform: uppercase;
+  color: var(--muted);
+}
+.field p { margin: 0; }
+.decision { font-size: 1.15rem; font-weight: 500; line-height: 1.45; }
 
-  .pin {
-    position: absolute;
-    top: 0.75rem;
-    left: 50%;
-    width: 1rem;
-    height: 1rem;
-    margin-left: -0.5rem;
-    border-radius: 50%;
-    background: var(--pin, var(--neon));
-    box-shadow: inset -2px -3px 0 rgba(0, 0, 0, 0.28);
-  }
-
-  .notice p {
-    margin: 0;
-    max-width: 34em;
-    font-size: clamp(1.15rem, 2.6vw, 1.45rem);
-    line-height: 1.45;
-    font-weight: 500;
-  }
-
-  .notice p + p { margin-top: 0.75em; }
-
-  .stamp {
-    display: inline-block;
-    margin-top: 1.5rem;
-    padding: 0.35rem 0.8rem;
-    border: 3px solid var(--stamp);
-    border-radius: 0.3rem;
-    color: var(--stamp);
-    font-family: var(--display);
-    font-weight: 700;
-    font-size: 0.85rem;
-    letter-spacing: 0.06em;
-    text-transform: uppercase;
-    transform: rotate(-4deg);
-    opacity: 0.85;
-  }
-
-  /* ---------- Секции ---------- */
-  section { margin-bottom: 3.5rem; }
-
-  h2 {
-    margin: 0 0 1.25rem;
-    font-family: var(--display);
-    font-weight: 500;
-    font-size: 1.15rem;
-    color: var(--brass);
-  }
-
-  p { margin: 0 0 1em; max-width: 66ch; }
-  p:last-child { margin-bottom: 0; }
-
-  .aside { color: var(--paper-dim); font-size: 0.97rem; }
-
-  /* ---------- Шапка: латунная табличка ---------- */
-  .plaque {
-    position: relative;
-    margin: 0;
-    padding: 1.4rem clamp(1.25rem, 4vw, 2rem);
-    border: 2px solid var(--brass);
-    border-radius: 0.5rem;
-    background:
-      radial-gradient(circle at 0.8rem 0.8rem, var(--brass) 0.22rem, transparent 0.24rem),
-      radial-gradient(circle at calc(100% - 0.8rem) 0.8rem, var(--brass) 0.22rem, transparent 0.24rem),
-      radial-gradient(circle at 0.8rem calc(100% - 0.8rem), var(--brass) 0.22rem, transparent 0.24rem),
-      radial-gradient(circle at calc(100% - 0.8rem) calc(100% - 0.8rem), var(--brass) 0.22rem, transparent 0.24rem),
-      var(--bottle-lift);
-  }
-
-  .plaque .row {
-    display: grid;
-    grid-template-columns: 8rem 1fr;
-    gap: 0.2rem 1.5rem;
-    padding: 0.65rem 0;
-    border-bottom: 1px dashed var(--rule);
-  }
-
-  .plaque .row:first-child { padding-top: 0; }
-  .plaque .row:last-child { border-bottom: 0; padding-bottom: 0; }
-  .plaque dt { color: var(--brass); font-weight: 600; }
-  .plaque dd { margin: 0; }
-
-  /* ---------- Референсы: подставки под стакан ---------- */
-  .coasters {
-    list-style: none;
-    margin: 0;
-    padding: 0;
-    display: grid;
-    grid-template-columns: repeat(3, 1fr);
-    gap: 1.25rem;
-  }
-
-  .coasters li {
-    aspect-ratio: 1;
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    padding: 1.4rem;
-    border-radius: 1.6rem;
-    background: var(--bottle-lift);
-    border: 2px solid var(--c);
-    outline: 1px dashed var(--c);
-    outline-offset: -0.6rem;
-    text-align: center;
-    transform: rotate(var(--r));
-  }
-
-  .coasters li:nth-child(1) { --c: var(--brass); --r: -2deg; }
-  .coasters li:nth-child(2) { --c: var(--neon);  --r: 1.5deg; }
-  .coasters li:nth-child(3) { --c: var(--night); --r: -1deg; }
-
-  .coasters h3 {
-    margin: 0 0 0.5rem;
-    font-family: var(--display);
-    font-weight: 500;
-    font-size: 0.95rem;
-    line-height: 1.25;
-    color: var(--c);
-  }
-
-  .coasters p { font-size: 0.92rem; line-height: 1.4; }
-
-  /* ---------- Фантазия: билет в первый ряд ---------- */
-  .ticket {
-    display: grid;
-    grid-template-columns: auto 1fr;
-    color: var(--ink);
-    background:
-      radial-gradient(circle at left center, transparent 0.75rem, var(--brass) 0.78rem) left / 51% 100% no-repeat,
-      radial-gradient(circle at right center, transparent 0.75rem, var(--brass) 0.78rem) right / 51% 100% no-repeat;
-  }
-
-  .ticket .stub {
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    padding: 1.5rem 1.5rem 1.5rem 2.25rem;
-    border-right: 2px dashed var(--ink);
-    font-family: var(--display);
-    line-height: 1.1;
-  }
-
-  .ticket .stub b { font-size: 2.4rem; font-weight: 700; }
-  .ticket .stub span { font-size: 0.8rem; font-weight: 500; }
-
-  .ticket .body {
-    padding: 1.5rem 2.25rem 1.5rem 1.5rem;
-    font-size: 1.1rem;
-    font-weight: 500;
-    line-height: 1.45;
-  }
-
-  .ticket + .aside { margin-top: 1rem; }
-
-  /* ---------- Цикл дня ---------- */
-  .day {
-    list-style: none;
-    margin: 0 0 1.25rem;
-    padding: 0;
-    display: grid;
-    grid-template-columns: repeat(3, 1fr);
-    gap: 0.75rem;
-    counter-reset: phase;
-  }
-
-  .day li {
-    counter-increment: phase;
-    padding: 1.25rem 1.1rem 1.3rem;
-    border-radius: 0.5rem;
-    background: linear-gradient(180deg, var(--top) 0%, var(--bottle-lift) 70%);
-    border-top: 4px solid var(--phase);
-  }
-
-  .day li:nth-child(1) { --phase: var(--brass); --top: #5d4a1e; }
-  .day li:nth-child(2) { --phase: var(--neon);  --top: #6a2440; }
-  .day li:nth-child(3) {
-    --phase: var(--night);
-    --top: #17384a;
-    background:
-      radial-gradient(1.5px 1.5px at 22% 14%, #fff, transparent 60%),
-      radial-gradient(1px 1px at 70% 9%, #ffffffb0, transparent 60%),
-      radial-gradient(1px 1px at 86% 26%, #ffffff90, transparent 60%),
-      radial-gradient(1px 1px at 48% 22%, #ffffff90, transparent 60%),
-      linear-gradient(180deg, var(--top) 0%, var(--bottle-lift) 70%);
-  }
-
-  .day svg {
-    display: block;
-    width: 2.75rem;
-    height: 2.75rem;
-    margin-bottom: 0.9rem;
-    color: var(--phase);
-  }
-
-  .day h3 {
-    margin: 0 0 0.5rem;
-    font-family: var(--display);
-    font-weight: 500;
-    font-size: 0.95rem;
-    line-height: 1.3;
-    color: var(--phase);
-  }
-
-  .day h3::before { content: counter(phase) ". "; }
-  .day p { font-size: 0.97rem; line-height: 1.5; }
-
-  /* ---------- Механики: доска с контрактами ---------- */
-  .board {
-    list-style: none;
-    margin: 0;
-    padding: 0;
-    display: grid;
-    grid-template-columns: repeat(2, 1fr);
-    gap: 1.5rem;
-  }
-
-  .board li {
-    position: relative;
-    padding: 2.4rem 1.4rem 1.5rem;
-    background: var(--paper);
-    color: var(--ink);
-    transform: rotate(var(--r));
-    box-shadow: 0 8px 0 -3px rgba(0, 0, 0, 0.3);
-  }
-
-  .board li:nth-child(1) { --r: -1.2deg; --pin: var(--neon); }
-  .board li:nth-child(2) { --r: 0.9deg;  --pin: var(--brass); }
-  .board li:nth-child(3) { --r: 0.6deg;  --pin: var(--night); }
-  .board li:nth-child(4) { --r: -0.8deg; --pin: var(--neon); }
-
-  .board h3 {
-    margin: 0 0 0.5rem;
-    font-family: var(--display);
-    font-weight: 700;
-    font-size: 1rem;
-    line-height: 1.25;
-  }
-
-  .board p { font-size: 0.98rem; line-height: 1.5; }
-  .board .fine { margin-top: 0.6rem; font-size: 0.88rem; opacity: 0.7; }
-
-  /* ---------- Чем отличается ---------- */
-  .claim {
-    margin: 0 0 1.25rem;
-    max-width: 22em;
-    font-family: var(--display);
-    font-weight: 500;
-    font-size: clamp(1.3rem, 3.6vw, 1.9rem);
-    line-height: 1.25;
-    color: var(--paper);
-  }
-
-  /* ---------- Идеи на потом: стикеры ---------- */
-  .stickies {
-    list-style: none;
-    margin: 0;
-    padding: 0;
-    display: flex;
-    flex-wrap: wrap;
-    gap: 1.25rem;
-  }
-
-  .stickies li {
-    flex: 1 1 14rem;
-    max-width: 19rem;
-    padding: 1.1rem 1.1rem 1.6rem;
-    color: var(--ink);
-    font-size: 0.98rem;
-    line-height: 1.45;
-    transform: rotate(var(--r));
-    box-shadow: 0 8px 0 -4px rgba(0, 0, 0, 0.3);
-  }
-
-  .stickies li:nth-child(1) { background: var(--sticky-a); --r: -1.5deg; }
-  .stickies li:nth-child(2) { background: var(--sticky-b); --r: 1.2deg; }
-
-  footer {
-    margin-top: 4rem;
-    padding: 1rem 0 3rem;
-    border-top: 1px solid var(--rule);
-    color: var(--paper-dim);
-    font-size: 0.9rem;
-  }
-
-  @media (max-width: 680px) {
-    .plaque .row { grid-template-columns: 1fr; }
-    .coasters { grid-template-columns: 1fr; }
-    .coasters li { aspect-ratio: auto; transform: none; }
-    .day { grid-template-columns: 1fr; }
-    .board { grid-template-columns: 1fr; }
-    .board li, .pinned, .stickies li { transform: none; }
-    .ticket { grid-template-columns: 1fr; }
-    .ticket .stub {
-      flex-direction: row;
-      align-items: baseline;
-      gap: 0.6rem;
-      padding: 1.25rem 2rem 1rem;
-      border-right: 0;
-      border-bottom: 2px dashed var(--ink);
-    }
-    .ticket .body { padding: 1rem 2rem 1.25rem; }
-  }
+@media (prefers-reduced-motion: reduce) { html { scroll-behavior: auto; } }
 </style>
-</head>
-<body>
 
-<header class="sky">
-  <div class="wrap">
-    <h1>Scum &amp; Villainy</h1>
-    <p class="meta">Рабочее название. One-pager, версия от 2 октября 2026.</p>
-  </div>
-</header>
-
-<main class="wrap">
-
-  <div class="pinned">
-    <div class="notice">
-      <span class="pin"></span>
-      <p>Ты держишь бар на задворках галактики, и ему вечно чего-то не хватает.</p>
-      <p>Приказывать местным наёмникам ты не можешь, зато можешь вывесить награду, а дальше каждый из них со своим характером сам решает, браться ли за дело и чем оно кончится.</p>
-      <span class="stamp">Нужны наёмники</span>
+<div class="wrap">
+  <header class="top">
+    <div>
+      <p class="eyebrow">Бар на космической станции</p>
+      <h1>Цеттелькастен</h1>
+      <p class="lede">Только принятые решения. Одна карточка — один пункт списка.</p>
     </div>
-  </div>
-
-  <section>
-    <h2>Шапка</h2>
-    <dl class="plaque">
-      <div class="row">
-        <dt>Жанр</dt>
-        <dd>Генератор историй с непрямым управлением. Бар работает как экономический движок: создаёт нужду и давление, которые толкают персонажей к действиям.</dd>
-      </div>
-      <div class="row">
-        <dt>Платформа</dt>
-        <dd>PC</dd>
-      </div>
-      <div class="row">
-        <dt>Движок</dt>
-        <dd>Godot</dd>
-      </div>
-    </dl>
-  </section>
-
-  <section>
-    <h2>Референсы</h2>
-    <ul class="coasters">
-      <li>
-        <h3>Majesty</h3>
-        <p>Непрямое управление через знамёна.</p>
-      </li>
-      <li>
-        <h3>Crusader Kings 3</h3>
-        <p>Истории из персонажей со множеством трейтов.</p>
-      </li>
-      <li>
-        <h3>This Is Police</h3>
-        <p>События с небольшими выборами.</p>
-      </li>
-    </ul>
-  </section>
-
-  <section>
-    <h2>Фантазия игрока</h2>
-    <div class="ticket">
-      <div class="stub"><b>Ряд 1</b><span>место за стойкой</span></div>
-      <div class="body">Ты зритель в первом ряду. Подкидываешь повод и с удовольствием смотришь, какой бардак из этого устроят персонажи.</div>
+    <div class="meta">
+      <span class="stats" id="stats"></span>
+      <a class="ext" href="https://claude.ai/code/artifact/b81c9418-918a-4eaa-b4e4-7fdacc8dd555" target="_blank" rel="noopener">Список пунктов ↗</a>
     </div>
-    <p class="aside">Следствие: провал должен быть не менее интересным, чем успех.</p>
-  </section>
+  </header>
 
-  <section>
-    <h2>Цикл одного дня</h2>
-    <ol class="day">
-      <li>
-        <svg viewBox="0 0 48 48" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
-          <rect x="7" y="16" width="34" height="25" rx="2"/>
-          <path d="M7 25h34M19 16v25M29 16v25"/>
-          <path d="M16 16l4-8h8l4 8"/>
-        </svg>
-        <h3>Утро, бар закрыт</h3>
-        <p>Планируешь логистику бара и вывешиваешь контракты на свои поставки.</p>
-      </li>
-      <li>
-        <svg viewBox="0 0 48 48" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
-          <path d="M8 9h32L24 27z"/>
-          <path d="M24 27v13M15 41h18"/>
-          <path d="M14 15h20"/>
-          <circle cx="33" cy="8" r="3"/>
-        </svg>
-        <h3>Вечер, бар открыт</h3>
-        <p>Приходят клиенты с делами и деньгами. Берёшь их дела и вывешиваешь контракты.</p>
-      </li>
-      <li>
-        <svg viewBox="0 0 48 48" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
-          <rect x="6" y="9" width="30" height="31" rx="2"/>
-          <path d="M36 17h6v19a4 4 0 0 1-8 0"/>
-          <path d="M12 16h18M12 23h8M12 29h8M12 34h18"/>
-          <rect x="24" y="22" width="7" height="8"/>
-        </svg>
-        <h3>Ночь, новости</h3>
-        <p>Случаются события, разрешаются конфликты. Тебе достаются небольшие выборы.</p>
-      </li>
-    </ol>
-    <p>Наёмников на всё не хватает: они сами выбирают между твоими поставками и делами клиентов. Последствия меняют бар, персонажей и отношения с клиентами и уходят в следующий день.</p>
-  </section>
+  <main class="layout">
+    <section class="graph-col" aria-label="Граф блоков и карточек">
+      <div class="graph-panel">
+        <svg id="graph" viewBox="-600 -600 1200 1200" preserveAspectRatio="xMidYMid meet" role="group" aria-label="Кольцо из 14 блоков с карточками решений"></svg>
+        <div class="zoom-ctl">
+          <button type="button" id="zin" aria-label="Приблизить">+</button>
+          <button type="button" id="zout" aria-label="Отдалить">−</button>
+          <button type="button" id="zfit">Весь граф</button>
+        </div>
+      </div>
+      <p class="caption">Кольцо — 14 блоков списка. Карточки решений стоят внутри кольца у своего блока, хорды между ними — ссылки. Клик открывает карточку, колесо или щипок меняют масштаб.</p>
+    </section>
 
-  <section>
-    <h2>Ключевые механики</h2>
-    <ul class="board">
-      <li>
-        <span class="pin"></span>
-        <h3>Знамя-контракт</h3>
-        <p>Единый механизм и для своих поставок, и для клиентских дел. Главный рычаг игрока: размер награды.</p>
-      </li>
-      <li>
-        <span class="pin"></span>
-        <h3>Наёмники с характером</h3>
-        <p>Трейты определяют, за что они берутся и как это кончается.</p>
-      </li>
-      <li>
-        <span class="pin"></span>
-        <h3>Лёгкая логистика бара</h3>
-        <p>Источник нужд и давления.</p>
-        <p class="fine">Не головоломка на оптимизацию.</p>
-      </li>
-      <li>
-        <span class="pin"></span>
-        <h3>Новости</h3>
-        <p>События и развязки с небольшими выборами.</p>
-      </li>
-    </ul>
-  </section>
+    <section class="pane" id="pane"></section>
+  </main>
+</div>
 
-  <section>
-    <h2>Чем отличается</h2>
-    <p class="claim">Власти у тебя нет. Есть деньги клиентов и доска с контрактами.</p>
-    <p>Знамёна как в Majesty, но откликаются на них не безликие герои, а персонажи с характером уровня CK3. И ты при этом не король и не правитель, а мелкий посредник за барной стойкой.</p>
-  </section>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/d3/7.9.0/d3.min.js"></script>
+<script>
+const LIST_URL = "https://claude.ai/code/artifact/b81c9418-918a-4eaa-b4e4-7fdacc8dd555";
 
-  <section>
-    <h2>Идеи на потом</h2>
-    <ul class="stickies">
-      <li>Оставлять себе часть денег клиента: вывесил награду меньше бюджета, разницу забрал.</li>
-      <li>Общение с клиентами в вечерней фазе.</li>
-    </ul>
-  </section>
+/* Блоки списка: хабы на кольце. Номера и порядок как в списке пунктов. */
+const BLOCKS = [
+  { n: 1,  name: "Рамка",               short: "Рамка" },
+  { n: 2,  name: "Разговоры у стойки",  short: "Разговоры" },
+  { n: 3,  name: "Информация",          short: "Информация" },
+  { n: 4,  name: "Рычаги",              short: "Рычаги" },
+  { n: 5,  name: "Доверие и репутация", short: "Доверие" },
+  { n: 6,  name: "Жители",              short: "Жители" },
+  { n: 7,  name: "Связи",               short: "Связи" },
+  { n: 8,  name: "Движок историй",      short: "Истории" },
+  { n: 9,  name: "Бар как место",       short: "Бар", next: true },
+  { n: 10, name: "Напитки",             short: "Напитки" },
+  { n: 11, name: "Станция",             short: "Станция", next: true },
+  { n: 12, name: "Хозяин",              short: "Хозяин", next: true },
+  { n: 13, name: "Экономика бара",      short: "Экономика", next: true },
+  { n: 14, name: "Партия и подача",     short: "Партия", next: true }
+];
 
-  <footer>
-    Сеттинг (космос, галактика отребья) взят как рабочая гипотеза.
-  </footer>
+/* Карточки: одна карточка — один пункт списка. Только принятые решения. */
+const CARDS = [
+  {
+    id: "1.1",
+    block: 1,
+    title: "Роль игрока",
+    decision: "Хозяин сам за стойкой.",
+    why: "В этой игре и не должно быть много управления.",
+    date: "2026-10-13",
+    links: []
+  },
+  {
+    id: "1.2",
+    block: 1,
+    title: "Принцип управления",
+    decision: "Хозяин меняет обстоятельства вокруг человека: кого посадить рядом, что налить, что рассказать. Решает человек сам.",
+    date: "2026-10-13",
+    links: []
+  },
+  {
+    id: "1.3",
+    block: 1,
+    title: "Туман войны",
+    decision: "Туман войны слоями. Внешнее видно сразу: профессия, настроение по лицу, с кем человек пришёл. Характер открывается в разговорах и по поведению. Секреты и планы узнаёшь только через доверие, слухи или случай.",
+    date: "2026-10-13",
+    links: ["1.2"]
+  },
+  {
+    id: "1.4",
+    block: 1,
+    title: "Время",
+    decision: "Время идёт непрерывно, со сменой дня и ночи. Бар то открыт, то закрыт. Диалоги работают как события в CK3: пока разговор не закончен, игра стоит на паузе.",
+    date: "2026-10-13",
+    links: []
+  },
+  {
+    id: "1.5",
+    block: 1,
+    title: "Выход из бара",
+    decision: "Хозяин не выходит из бара, весь мир приходит к нему. Пока бар закрыт, время проматывается, но в дверь могут постучать. Возможно, камеру можно будет отдалить и посмотреть на станцию, но людей при этом не видно и взаимодействия нет.",
+    date: "2026-10-13",
+    links: ["1.3", "1.4"]
+  },
+  {
+    id: "1.6",
+    block: 1,
+    title: "Контент",
+    decision: "Для начала: генерируемые люди в авторских сюжетах, как в Wildermyth. Сценаристы пишут сюжеты с ролями вроде «должник», «ревнивец», «беглец», а игра раздаёт эти роли генерируемым людям по их чертам.",
+    why: "Чтобы персонажи генерировались и забеги не повторялись.",
+    date: "2026-10-13",
+    links: ["1.2"]
+  },
+  {
+    id: "1.7",
+    block: 1,
+    title: "Длина партии",
+    decision: "Пока, скорее всего: сезон фиксированной длины. Забег длится заранее известный срок, например пока действует аренда, и кончается эпилогом.",
+    date: "2026-10-13",
+    links: ["1.6"]
+  },
+  {
+    id: "1.8",
+    block: 1,
+    title: "Смерть хозяина",
+    decision: "Смерть хозяина маловероятна. Если она всё же случается, забег кончается.",
+    date: "2026-10-13",
+    links: ["1.7"]
+  },
+  {
+    id: "2.1",
+    block: 2,
+    title: "Внимание",
+    decision: "Пока: время плюс терпение гостей. Разговор стоит времени вечера: пока читаешь, игра на паузе, но по сюжету разговор занимает время, и после него часы прыгают вперёд. Кого не выслушал, тот теряет терпение: уходит, обижается или начинает буянить.",
+    date: "2026-10-13",
+    links: ["1.4"]
+  },
+  {
+    id: "2.2",
+    block: 2,
+    title: "Зачем приходят",
+    decision: "Привычка плюс повод. Завсегдатаи ходят по распорядку, но повод меняет, зачем они пришли сегодня. Незнакомцы приходят только по поводу.",
+    why: "Это игровая условность: без гостей не было бы игры.",
+    date: "2026-10-13",
+    links: ["1.5"]
+  },
+  {
+    id: "2.3",
+    block: 2,
+    title: "Час пик и затишье",
+    decision: "Толпы в баре нет, размена «час пик — затишье» тоже.",
+    date: "2026-10-13",
+    links: []
+  },
+  {
+    id: "2.4",
+    block: 2,
+    title: "Доверие",
+    status: "next",
+    decision: "Нужно ли доверие вообще, пока не ясно. Если нужно, то оно растёт и падает от поступков хозяина, а скорость зависит от характера: болтун открывается за вечер, скрытный за сезон, а то и никогда.",
+    date: "2026-10-13",
+    links: ["1.3"]
+  },
+  {
+    id: "2.5",
+    block: 2,
+    title: "Исповедь у стойки",
+    decision: "Два этажа, как слои из 1.3. О внешней беде гость говорит сам. Настоящая тайна за ней открывается только в особый момент: доверие, если оно будет, опьянение, отчаяние. Второе дно есть не у каждой истории.",
+    date: "2026-10-13",
+    links: ["1.3", "2.4"]
+  },
+  {
+    id: "2.6",
+    block: 2,
+    title: "Расспросить",
+    decision: "Не расспрашивать. Гость сам решает, о чём говорить, хозяин слушает.",
+    why: "Головоломка «что налить, куда посадить» уже хороша.",
+    date: "2026-10-13",
+    links: ["1.2", "2.5"]
+  },
+  {
+    id: "2.7",
+    block: 2,
+    title: "Ответ",
+    status: "cut",
+    decision: "Пока вычеркнут. Механики ответа нет: хозяин слушает, а ответ происходит в голове игрока.",
+    date: "2026-10-13",
+    links: ["2.6"]
+  },
+  {
+    id: "2.8",
+    block: 2,
+    title: "Просьбы гостей",
+    decision: "Просьба просто повисает, и у неё есть таймер. Её можно попробовать решить, но условия для этого могут сложиться не сразу. Удача и «протухание» по-разному меняют мир.",
+    date: "2026-10-13",
+    links: ["1.4", "1.5"]
+  },
+  {
+    id: "3.2",
+    block: 3,
+    title: "Карточка гостя",
+    decision: "Карточка есть только у того, кто сейчас за стойкой. Она достаточно подробная.",
+    date: "2026-10-13",
+    links: ["1.3"]
+  },
+  {
+    id: "3.3",
+    block: 3,
+    title: "Карта связей",
+    decision: "Отдельной карты нет. Связи видны в карточке гостя за стойкой: все, какие игрок уже знает. Тайные связи по 1.3 открываются не сразу.",
+    why: "Это не та информация, к которой игрок возвращается постоянно.",
+    date: "2026-10-13",
+    links: ["3.2", "1.3"]
+  },
+  {
+    id: "3.4",
+    block: 3,
+    title: "Слухи и байки",
+    decision: "Слухи правдивы, но неполны: слух несёт настоящий факт, только кусок. Он сам расходится от человека к человеку и не искажается.",
+    date: "2026-10-13",
+    links: ["1.3", "1.2"]
+  },
+  {
+    id: "3.5",
+    block: 3,
+    title: "Свидетели",
+    decision: "Отдельной механики свидетелей нет. Громкое событие в баре просто меняет параметры: репутацию или что-то похуже.",
+    date: "2026-10-13",
+    links: []
+  },
+  {
+    id: "3.6",
+    block: 3,
+    title: "Подслушать",
+    decision: "Обрывки разговоров между гостями долетают до стойки сами, делать для этого ничего не нужно. Последствия игрок по большей части узнаёт именно из них.",
+    date: "2026-10-13",
+    links: ["1.2", "1.3"]
+  },
+  {
+    id: "3.7",
+    block: 3,
+    title: "Читать людей",
+    decision: "Сигналы только в поведении, без подписей: человек ёрзает, косится на дверь, заказывает быстрее обычного. Сигналы — подсказка, а не основной источник сведений.",
+    why: "Изучение сигналов от забега к забегу даёт немного knowledge-based геймплея.",
+    date: "2026-10-13",
+    links: ["1.3", "1.7"]
+  },
+  {
+    id: "3.8",
+    block: 3,
+    title: "Информаторы",
+    decision: "Болтуны сами по себе. Отдельной роли нет, но люди с чертой «болтун» приносят больше новостей и быстрее разносят слухи.",
+    why: "На них выгодно потратить время.",
+    date: "2026-10-13",
+    links: ["3.4", "2.1"]
+  },
+  {
+    id: "4.1",
+    block: 4,
+    title: "Свести двоих",
+    decision: "Рассадка плюс угощение от чужого имени: можно отправить напиток «от того господина у окна», правда это или нет.",
+    date: "2026-10-13",
+    links: ["1.2"]
+  },
+  {
+    id: "4.2",
+    block: 4,
+    title: "Сведения в ход",
+    status: "next",
+    decision: "Вернуться в следующем обновлении: «рассказать» кажется слишком прямым действием.",
+    date: "2026-10-13",
+    links: ["1.2"]
+  },
+  {
+    id: "4.3",
+    block: 4,
+    title: "Слух",
+    status: "cut",
+    decision: "Вычеркнут. Отдельного рычага нет, слухи живут сами по 3.4.",
+    date: "2026-10-13",
+    links: ["3.4"]
+  },
+  {
+    id: "4.4",
+    block: 4,
+    title: "Шантаж секретом",
+    status: "cut",
+    decision: "Вычеркнут. Секреты нужны, чтобы понимать людей и рассаживать их, а не чтобы давить.",
+    date: "2026-10-13",
+    links: ["1.2", "4.2"]
+  },
+  {
+    id: "4.5",
+    block: 4,
+    title: "Долги",
+    decision: "Долг сам меняет поведение, отдельного действия нет. Должник ведёт себя иначе, по своему характеру: кто-то ходит чаще и заступается за бар, кто-то избегает хозяина, кто-то ищет, как расплатиться услугой.",
+    date: "2026-10-13",
+    links: ["2.8", "1.2"]
+  },
+  {
+    id: "4.6",
+    block: 4,
+    title: "Почта через бар",
+    status: "next",
+    decision: "Отложено до следующего обновления: сейчас записки совсем не нравятся.",
+    date: "2026-10-13",
+    links: ["2.8"]
+  },
+  {
+    id: "4.7",
+    block: 4,
+    title: "Алиби",
+    status: "cut",
+    decision: "Вычеркнут как отдельный пункт. Алиби — материал для событий, а не механика.",
+    date: "2026-10-13",
+    links: ["1.4"]
+  },
+  {
+    id: "4.8",
+    block: 4,
+    title: "Укрыть или сдать охране",
+    status: "cut",
+    decision: "Вычеркнут: это конкретное событие, а не механика.",
+    date: "2026-10-13",
+    links: ["4.7"]
+  },
+  {
+    id: "4.9",
+    block: 4,
+    title: "Дать работу в баре",
+    status: "next",
+    decision: "Вычеркнут сейчас, перенесён в следующее обновление.",
+    date: "2026-10-13",
+    links: ["1.1"]
+  },
+  {
+    id: "4.10",
+    block: 4,
+    title: "Не обслужить, выставить, забанить",
+    decision: "Только не наливать. Отказ — это «что налить» из 1.2, дальше гость решает сам через терпение из 2.1. Уже покрыто решёнными пунктами.",
+    date: "2026-10-13",
+    links: ["1.2", "2.1"]
+  },
+  {
+    id: "4.11",
+    block: 4,
+    title: "Драка",
+    decision: "Драка — только последствие. Хозяин не вмешивается: драку можно предотвратить заранее рассадкой и выпивкой, а если она случилась, меняются параметры по 3.5.",
+    date: "2026-10-13",
+    links: ["1.2", "3.5"]
+  },
+  {
+    id: "4.12",
+    block: 4,
+    title: "Устроить вечер",
+    status: "next",
+    decision: "Перенесено в следующее обновление.",
+    date: "2026-10-13",
+    links: ["2.2"]
+  },
+  {
+    id: "4.13",
+    block: 4,
+    title: "Бар как биржа",
+    status: "next",
+    decision: "Перенесено в следующее обновление.",
+    why: "Слишком сложно для базовой версии.",
+    date: "2026-10-13",
+    links: ["2.8"]
+  },
+  {
+    id: "4.14",
+    block: 4,
+    title: "Грязные приёмы",
+    status: "cut",
+    decision: "Вычеркнут как дубль рассадки и выпивки из 1.2.",
+    date: "2026-10-13",
+    links: ["1.2"]
+  },
+  {
+    id: "5.1",
+    block: 5,
+    title: "Кодекс бармена",
+    status: "next",
+    decision: "Перенесено в следующее обновление, не для первой версии.",
+    date: "2026-10-13",
+    links: ["4.2", "2.4"]
+  },
+  {
+    id: "5.2",
+    block: 5,
+    title: "Кем считают хозяина",
+    status: "cut",
+    decision: "Вычеркнут: по сути это репутация из 3.5.",
+    date: "2026-10-13",
+    links: ["3.5"]
+  },
+  {
+    id: "5.3",
+    block: 5,
+    title: "Как бар видят разные круги",
+    status: "next",
+    decision: "Репутация у разных кругов — в следующем обновлении. В первой версии одна репутация на всех, как в 3.5.",
+    date: "2026-10-13",
+    links: ["3.5"]
+  },
+  {
+    id: "5.4",
+    block: 5,
+    title: "Нейтралитет",
+    decision: "Нейтралитет по умолчанию. В первой версии бар ни за кого: враги могут оказаться под одной крышей, а напряжение регулируют рассадка и драки как последствие. Выбор стороны — в следующем обновлении вместе с кругами из 5.3.",
+    date: "2026-10-13",
+    links: ["5.3", "1.2", "4.11"]
+  },
+  {
+    id: "5.5",
+    block: 5,
+    title: "Фракции",
+    decision: "В первой версии только события: рэкетир или чиновник может прийти в бар в виде авторского сюжета. Постоянной системы отношений с фракциями нет, она в следующем обновлении вместе с кругами из 5.3.",
+    date: "2026-10-13",
+    links: ["1.4", "1.6", "5.3"]
+  },
+  {
+    id: "5.6",
+    block: 5,
+    title: "Интерес охраны",
+    status: "cut",
+    decision: "Вычеркнут: охрана — это скорее событие, отдельного параметра нет.",
+    date: "2026-10-13",
+    links: ["1.4", "5.5"]
+  },
+  {
+    id: "6.1",
+    block: 6,
+    title: "Черты характера",
+    decision: "Характер устроен в два слоя, как в CK3. Скрытый слой — шкалы личности, например «Храбрость»; на них опираются механики и решения людей. Видимый слой — черты: у каждой свой набор сдвигов по шкалам, пар противоположных черт нет. Игрок видит черты через туман войны, шкалы скрыты. Напиток на время сдвигает шкалы.",
+    date: "2026-10-13",
+    links: ["1.2", "1.3", "1.6"]
+  },
+  {
+    id: "6.2",
+    block: 6,
+    title: "Убеждения и ценности",
+    status: "next",
+    decision: "Отдельный слой убеждений, как вера и культура в CK3: у каждого свои убеждения, связанные с кругами и фракциями. Это дополнительный функционал, делаем в следующем обновлении.",
+    date: "2026-10-13",
+    links: ["5.3", "6.1"]
+  },
+  {
+    id: "6.3",
+    block: 6,
+    title: "Происхождение",
+    status: "next",
+    decision: "Происхождение как черта: «космород», «планетник», «корпоративный» — обычные черты со своими сдвигами по шкалам и колоритом, видны сразу, как профессия. Предрассудки придут вместе со слоем убеждений из 6.2. Перенесено в следующее обновление.",
+    date: "2026-10-13",
+    links: ["6.1", "6.2", "1.3"]
+  },
+  {
+    id: "6.4",
+    block: 6,
+    title: "Нужды",
+    decision: "Нужды только через поводы и сюжеты, шкал нет. Повод из 2.2 и роль в сюжете из 1.6 сами говорят, чего человеку не хватает: на мели — просит в долг, одинок — ищет компанию.",
+    date: "2026-10-13",
+    links: ["2.2", "1.6"]
+  },
+  {
+    id: "6.5",
+    block: 6,
+    title: "Настроение, стресс и срывы",
+    status: "next",
+    decision: "Стресс как в CK3: ещё одна скрытая шкала из 6.1, только быстрая. Растёт от бед и поступков против своих черт, падает от выпивки и вечера в баре. На лице виден как настроение. За порогом — срыв как событие: запой, драка, бегство. Перенесено в следующее обновление.",
+    why: "Пока непонятно, как правильно это реализовать.",
+    date: "2026-10-13",
+    links: ["6.1", "1.3", "2.2", "1.4"]
+  },
+  {
+    id: "6.6",
+    block: 6,
+    title: "Зависимость",
+    status: "cut",
+    decision: "Вычеркнут.",
+    why: "Пока эта вещь в целом не нравится.",
+    date: "2026-10-13",
+    links: ["1.2"]
+  },
+  {
+    id: "6.7",
+    block: 6,
+    title: "Цели, амбиции, страхи",
+    decision: "Цели живут в ролях сюжетов, отдельной системы нет. Цель приходит вместе с ролью из 1.6: должник хочет расплатиться, беглец — улететь. У людей без роли цели нет.",
+    date: "2026-10-13",
+    links: ["1.6"]
+  },
+  {
+    id: "6.8",
+    block: 6,
+    title: "Профессия и навыки",
+    decision: "Профессия — видимая черта из 6.1: сдвигает шкалы и задаёт распорядок, то есть когда человек приходит в бар. Навыков нет.",
+    why: "Профессии звучат как черты, как «Мастер меча» и прочее из CK3.",
+    date: "2026-10-13",
+    links: ["6.1", "2.2", "1.3"]
+  },
+  {
+    id: "6.9",
+    block: 6,
+    title: "Прошлое и секреты",
+    status: "next",
+    decision: "Перенесено в следующее обновление.",
+    why: "Пока непонятно, как это прикрутить.",
+    date: "2026-10-13",
+    links: ["1.3", "2.5"]
+  },
+  {
+    id: "6.10",
+    block: 6,
+    title: "Интриги",
+    decision: "Интриги — это решения жителей, как Decisions в CK3, а не схемы. Сюжет и роли раздаёт игра по 1.6, а решения — шаги внутри сюжета: беглец уже назначен, а сбежит ли он сегодня, решается в баре. У решения есть условия и вес по шкалам из 6.1. Решение созревает, пока человек сидит в баре: напиток и соседи меняют шанс, а последствия возвращаются обрывками по 3.6. Человек без роли интриг не затевает.",
+    why: "Роли и так раздаются по чертам, так что для игрока разница небольшая, а темп остаётся в руках игры.",
+    date: "2026-10-13",
+    links: ["6.1", "1.2", "1.5", "3.6", "1.6", "6.7"]
+  },
+  {
+    id: "6.11",
+    block: 6,
+    title: "Память",
+    status: "next",
+    decision: "Люди помнят и хозяина, и события. Развязка сюжета оставляет участникам метки вроде «подрался с Рыжим». Игра учитывает их, когда раздаёт роли по 1.6, а решения из 6.10 могут ставить их условием. Метки получают только участники, свидетелей из 3.5 нет. Перенесено в следующее обновление, не для первой итерации.",
+    why: "Чтобы мстить, помнить, желать реванша. Но для первой итерации система пока слишком сложная.",
+    date: "2026-10-13",
+    links: ["1.6", "6.10", "3.5"]
+  },
+  {
+    id: "6.12",
+    block: 6,
+    title: "Жизненный цикл",
+    decision: "Сюжеты плюс фон. Значимые прилёты, отлёты, травмы и смерти случаются через развязки сюжетов из 1.6. Травма — видимая черта из 6.1, например «Хромой» или «Со шрамом». Поверх идёт фон по кулдауну, как гости и странники в CK3: время от времени кто-то без роли улетает, а на его место прилетает новый сгенерированный человек. Игрок замечает это по обрывку или по новому лицу у стойки. Тот, у кого есть роль, не улетает. Старость тоже будет — в следующем обновлении.",
+    date: "2026-10-13",
+    links: ["1.6", "6.1", "3.6", "2.2"]
+  },
+  {
+    id: "7.1",
+    block: 7,
+    title: "Мнение друг о друге с причинами",
+    decision: "Пока как в CK3: мнение — это число, сложенное из причин со своим весом и сроком. Игрок видит в карточке гостя и число, и причины.",
+    why: "Скрыть всегда успеем.",
+    date: "2026-10-13",
+    links: ["3.2", "3.3", "1.3", "4.1"]
+  },
+  {
+    id: "7.2",
+    block: 7,
+    title: "Типы связей",
+    decision: "Друг, враг, любовник, наставник — отдельные отношения поверх мнения, как в CK3: они добавляют к мнению крупную причину и держатся дольше него. Родня и старые связи задаются при генерации, а новые даёт только развязка сюжета. Мнение из 7.1 служит условием, по которому игра выбирает двоих на роли из 1.6.",
+    date: "2026-10-13",
+    links: ["7.1", "1.6", "6.10"]
+  },
+  {
+    id: "7.3",
+    block: 7,
+    title: "Компании",
+    status: "next",
+    decision: "Отложено до следующего обновления: тогда и решим, как работают компании. Варианты на столе: компания складывается сама из связей 7.2 и распорядка 6.8; компания с именем; компания как одно целое, но оно спорит с одной репутацией из 5.3; или обида передаётся через дружбу из 7.2.",
+    date: "2026-10-13",
+    links: ["7.2", "6.8", "5.3", "7.1"]
+  },
+  {
+    id: "7.4",
+    block: 7,
+    title: "Долги и услуги",
+    decision: "Обязательство — ещё один тип связи из 7.2: «обязан», а деньги и услуга здесь одно и то же. Связь появляется при генерации или из развязки сюжета, добавляет причину к мнению из 7.1 и живёт, пока долг не закроют. Игра учитывает её, когда раздаёт роли и взвешивает решения из 6.10. Должник ведёт себя как в 4.5. Мелких долгов нет: угощение меняет мнение, но не создаёт обязательства.",
+    date: "2026-10-13",
+    links: ["7.2", "7.1", "4.5", "6.10"]
+  },
+  {
+    id: "8.1",
+    block: 8,
+    title: "События из состояния мира",
+    decision: "Пульс с условиями, как в CK3. Время от времени игра перебирает события с выполненными условиями и выбирает из них по весам, у каждого события свой кулдаун. Условия — черты из 6.1, мнение из 7.1, связи из 7.2 и долги из 7.4, а также кто сейчас в баре и сколько выпил.",
+    date: "2026-10-13",
+    links: ["6.1", "7.1", "7.2", "7.4", "6.10"]
+  },
+  {
+    id: "8.2",
+    block: 8,
+    title: "Сюжетные нити",
+    decision: "История гостя тянется через несколько визитов, и сюжет идёт даже между ними. За кадром он движется по таймеру: долг растёт, срок поджимает, соперник действует. В бар человек приносит новости, а решения из 6.10 принимает там же, в баре. Если он долго не приходит, сюжет сам катится к развязке, как просьба из 2.8. Часть истории игрок узнаёт только из обрывков по 3.6.",
+    date: "2026-10-13",
+    links: ["6.10", "2.8", "3.6", "1.4"]
+  },
+  {
+    id: "8.3",
+    block: 8,
+    title: "Развязки",
+    decision: "Обрывки плюс возвращение. Развязка идёт за кадром, как следует из 6.10. Если участник жив и на станции, развязка становится поводом прийти в бар по 2.2: он приходит и сам рассказывает, чем всё кончилось. В остальных случаях игрок узнаёт об этом из обрывков и слухов по 3.4 и 3.6. Значит, каждому исходу нужна своя финальная сцена.",
+    date: "2026-10-13",
+    links: ["6.10", "2.2", "3.4", "3.6", "8.2"]
+  },
+  {
+    id: "8.4",
+    block: 8,
+    title: "Рассказчик-режиссёр",
+    status: "cut",
+    decision: "Вычеркнут. Режиссёра нет, темп задаёт пульс из 8.1: частота, веса и кулдауны.",
+    date: "2026-10-13",
+    links: ["8.1"]
+  },
+  {
+    id: "8.5",
+    block: 8,
+    title: "Отложенные последствия",
+    decision: "Отложенные события, как в CK3. Развязка может назначить событие на потом: «через две недели за ним придут» или «ложь про угощение от чужого имени вскроется». Когда срок выходит, событие попадает в пульс из 8.1 как кандидат и всё равно проверяет условия. Советов хозяина нет по 2.7, так что последствия идут от развязок и поступков жителей.",
+    date: "2026-10-13",
+    links: ["8.1", "8.3", "4.1", "2.7"]
+  },
+  {
+    id: "8.6",
+    block: 8,
+    title: "Столкновение историй",
+    decision: "Для первой версии — одна роль за раз: каждый человек участвует только в одном сюжете. Забрать его в другой сюжет нельзя: он занят до конца текущего, так же как человек с ролью не улетает по 6.12. Истории сталкиваются через рассадку и через последствия: развязка одной меняет связи и долги, а пульс из 8.1 находит в них условия для другой. Лимит ролей можно поднять позже.",
+    date: "2026-10-13",
+    links: ["1.6", "8.1", "1.2", "7.2", "7.4", "6.12"]
+  },
+  {
+    id: "8.6.1",
+    block: 8,
+    title: "Пустая роль",
+    decision: "Для первой версии: если участник выбыл, сюжет обрывается особой развязкой. У каждого сюжета есть концовка «кого-то не стало»: кредитор умер — долг списан, влюблённый умер — горе. Это обычная развязка по 8.3, и кто-то из оставшихся придёт рассказать. Внезапно выбыть человек может, например, когда отложенное событие из 8.5 догоняет его уже в другом сюжете. Передачу роли другому человеку можно добавить позже.",
+    date: "2026-10-13",
+    links: ["8.6", "8.3", "8.5", "6.12"]
+  },
+  {
+    id: "8.7",
+    block: 8,
+    title: "Хроника станции",
+    status: "cut",
+    decision: "Вычеркнута. Летописи станции, как легенд в Dwarf Fortress, не будет.",
+    date: "2026-10-13",
+    links: []
+  },
+  {
+    id: "8.8",
+    block: 8,
+    title: "Стена памяти",
+    status: "cut",
+    decision: "Вычеркнута. Вещей, оставленных в баре, и тостов за ушедших как механики не будет.",
+    date: "2026-10-13",
+    links: []
+  },
+  {
+    id: "10.1",
+    block: 10,
+    title: "Меню",
+    decision: "Для первой версии — небольшое постоянное меню: шесть-восемь напитков, у каждого свои сдвиги по шкалам из 6.1, все доступны с первого вечера. Цены и качество относятся к деньгам, их решаем в блоке 13.",
+    date: "2026-10-13",
+    links: ["6.1", "1.2", "3.7"]
+  },
+  {
+    id: "10.2",
+    block: 10,
+    title: "Смешивание",
+    decision: "Пока без смешивания: напиток просто выбирают из меню.",
+    date: "2026-10-13",
+    links: ["10.1", "1.2"]
+  },
+  {
+    id: "10.1.1",
+    block: 10,
+    title: "Меню: на потом",
+    status: "next",
+    decision: "В следующем обновлении: качество напитков, фирменные коктейли, меню, которое растёт за сезон, и своё меню на каждый забег.",
+    date: "2026-10-13",
+    links: ["10.1"]
+  },
+  {
+    id: "10.3",
+    block: 10,
+    title: "Напиток как инструмент",
+    decision: "Уже покрыт 6.1: напиток на время сдвигает шкалы, а через них и решения людей из 6.10.",
+    date: "2026-10-13",
+    links: ["6.1", "6.10", "10.1"]
+  },
+  {
+    id: "10.4",
+    block: 10,
+    title: "Опьянение",
+    status: "next",
+    decision: "Вернуться в следующем обновлении. Вычеркнуть нельзя: на опьянение опираются 2.5, где тайна открывается спьяну, а также 6.10 и 8.1, где «сколько выпил» служит условием.",
+    date: "2026-10-13",
+    links: ["2.5", "6.10", "8.1"]
+  },
+  {
+    id: "10.5",
+    block: 10,
+    title: "Угощение за счёт заведения",
+    status: "cut",
+    decision: "Вычеркнуто.",
+    date: "2026-10-13",
+    links: []
+  }
+];
 
-</main>
-</body>
-</html>
+(function () {
+  "use strict";
+
+  const MONTHS = ["января", "февраля", "марта", "апреля", "мая", "июня", "июля", "августа", "сентября", "октября", "ноября", "декабря"];
+  const reduceMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+  const byId = new Map(CARDS.map(c => [c.id, c]));
+  const blockOf = n => BLOCKS.find(b => b.n === n);
+
+  function cmpId(a, b) {
+    const pa = a.split(".").map(Number);
+    const pb = b.split(".").map(Number);
+    for (let i = 0; i < Math.max(pa.length, pb.length); i++) {
+      const d = (pa[i] || 0) - (pb[i] || 0);
+      if (d) return d;
+    }
+    return 0;
+  }
+  function plural(n, one, few, many) {
+    const m10 = n % 10, m100 = n % 100;
+    if (m10 === 1 && m100 !== 11) return one;
+    if (m10 >= 2 && m10 <= 4 && (m100 < 12 || m100 > 14)) return few;
+    return many;
+  }
+  function fmtDate(iso) {
+    const parts = iso.split("-").map(Number);
+    return parts[2] + " " + MONTHS[parts[1] - 1] + " " + parts[0];
+  }
+  function esc(s) {
+    return String(s).replace(/[&<>"']/g, ch => ({ "&": "&amp;", "<": "&lt;", ">": "&gt;", "\"": "&quot;", "'": "&#39;" }[ch]));
+  }
+  function cardsOf(n) {
+    return CARDS.filter(c => c.block === n).sort((a, b) => cmpId(a.id, b.id));
+  }
+  function backlinks(id) {
+    return CARDS.filter(c => (c.links || []).includes(id)).sort((a, b) => cmpId(a.id, b.id));
+  }
+  function countLabel(n) {
+    return n + " " + plural(n, "карточка", "карточки", "карточек");
+  }
+  const STATUS = { cut: "вычеркнуто", next: "в следующем обновлении" };
+  function badge(c) {
+    return c.status ? '<span class="badge ' + c.status + '">' + STATUS[c.status] + "</span>" : "";
+  }
+
+  document.getElementById("stats").textContent =
+    countLabel(CARDS.length) + " · " + BLOCKS.length + " " + plural(BLOCKS.length, "блок", "блока", "блоков");
+
+  /* ---------- адреса ---------- */
+  function parseHash() {
+    let h = "";
+    try { h = decodeURIComponent(location.hash.slice(1)); } catch (err) { h = ""; }
+    if (/^b\d+$/.test(h)) {
+      const n = Number(h.slice(1));
+      if (blockOf(n)) return { type: "hub", n: n };
+    }
+    if (/^k[\d.]+$/.test(h)) {
+      const id = h.slice(1);
+      if (byId.has(id)) return { type: "card", id: id };
+    }
+    return { type: "overview" };
+  }
+
+  /* ---------- правая панель ---------- */
+  const pane = document.getElementById("pane");
+
+  function cardLink(c) {
+    return '<a class="clink" href="#k' + esc(c.id) + '"><span class="cid">' + esc(c.id) + '</span><span class="ctitle">' + esc(c.title) + "</span></a>";
+  }
+  function listLink(text) {
+    return '<a href="' + LIST_URL + '" target="_blank" rel="noopener">' + text + "</a>";
+  }
+
+  function renderOverview() {
+    const rows = BLOCKS.map(b => {
+      const n = cardsOf(b.n).length;
+      return '<li><a class="brow' + (n ? "" : " is-empty") + '" href="#b' + b.n + '">' +
+        '<span class="bnum">' + b.n + "</span>" +
+        '<span class="bname">' + esc(b.name) + "</span>" +
+        '<span class="bcount">' + (n ? countLabel(n) : (b.next ? "в следующем обновлении" : "пусто")) + "</span></a></li>";
+    }).join("");
+    const recent = CARDS.slice()
+      .sort((a, b) => b.date.localeCompare(a.date) || cmpId(b.id, a.id))
+      .slice(0, 8);
+    const recentHtml = recent.length
+      ? '<ul class="clist">' + recent.map(c =>
+          "<li>" + cardLink(c) + '<span class="cmeta">' + badge(c) + esc(blockOf(c.block).name) + " · " + fmtDate(c.date) + "</span></li>"
+        ).join("") + "</ul>"
+      : '<p class="empty">Пока ни одного решения.</p>';
+    const nextBlocks = BLOCKS.filter(b => b.next);
+    const nextCards = CARDS.filter(c => c.status === "next").sort((a, b) => cmpId(a.id, b.id));
+    const pending = (nextBlocks.length || nextCards.length)
+      ? "<h2>В следующем обновлении</h2>" +
+        '<p class="note">То, что делаем после грейбокса.' +
+        (nextBlocks.length
+          ? " Целиком: " + nextBlocks.map(b => '<a href="#b' + b.n + '">' + b.n + ". " + esc(b.name) + "</a>").join(", ") + "."
+          : "") + "</p>" +
+        (nextCards.length
+          ? '<ul class="clist">' + nextCards.map(c =>
+              "<li>" + cardLink(c) + '<span class="cmeta">' + esc(c.decision) + "</span></li>"
+            ).join("") + "</ul>"
+          : "")
+      : "";
+    return '<div class="view">' +
+      '<p class="crumbs">Обзор</p>' +
+      "<h2>Блоки</h2>" +
+      '<ol class="blocks">' + rows + "</ol>" +
+      pending +
+      "<h2>Последние решения</h2>" +
+      recentHtml +
+      "</div>";
+  }
+
+  function renderHub(n) {
+    const b = blockOf(n);
+    const list = cardsOf(n);
+    const body = list.length
+      ? '<ul class="clist">' + list.map(c =>
+          "<li>" + cardLink(c) + '<span class="cmeta">' + badge(c) + esc(c.decision) + "</span></li>"
+        ).join("") + "</ul>"
+      : (b.next
+          ? '<p class="empty">Блок целиком перенесён в следующее обновление — разбираем после грейбокса.</p>'
+          : '<p class="empty">В этом блоке решений пока нет.</p>');
+    return '<div class="view">' +
+      '<p class="crumbs"><a href="#obzor">Обзор</a> <span aria-hidden="true">›</span> Блок ' + n + "</p>" +
+      '<h2 class="view-title">' + esc(b.name) + "</h2>" +
+      body +
+      '<p class="note">Открытые пункты блока — в ' + listLink("списке") + ".</p>" +
+      "</div>";
+  }
+
+  function renderCard(id) {
+    const c = byId.get(id);
+    const b = blockOf(c.block);
+    const out = (c.links || []).map(t => byId.get(t)).filter(Boolean);
+    const back = backlinks(id);
+    const links = arr => arr.length
+      ? '<ul class="clist tight">' + arr.map(x => "<li>" + cardLink(x) + "</li>").join("") + "</ul>"
+      : '<p class="empty">Пока нет.</p>';
+    return '<div class="view">' +
+      '<p class="crumbs"><a href="#obzor">Обзор</a> <span aria-hidden="true">›</span> <a href="#b' + b.n + '">' + esc(b.name) + "</a></p>" +
+      '<article class="slip">' +
+        '<header class="slip-head"><span class="slip-left"><span class="slip-id">' + esc(c.id) + "</span>" + badge(c) + "</span><span>" + (c.status ? "" : "решено ") + fmtDate(c.date) + "</span></header>" +
+        '<h2 class="slip-title">' + esc(c.title) + "</h2>" +
+        '<section class="field"><h3>Решение</h3><p class="decision">' + esc(c.decision) + "</p></section>" +
+        (c.why ? '<section class="field"><h3>Почему</h3><p>' + esc(c.why) + "</p></section>" : "") +
+        '<section class="field"><h3>Ссылки</h3>' + links(out) + "</section>" +
+        '<section class="field"><h3>Ссылаются сюда</h3>' + links(back) + "</section>" +
+      "</article>" +
+      "</div>";
+  }
+
+  /* ---------- граф ---------- */
+  let fromGraph = false;
+
+  function initGraph() {
+    const panel = document.querySelector(".graph-panel");
+    if (!window.d3) {
+      panel.classList.add("is-offline");
+      return { select: function () {} };
+    }
+    const R = 250;
+    const svg = d3.select("#graph");
+    const viewport = svg.append("g").attr("class", "viewport");
+    viewport.append("circle").attr("class", "hull").attr("r", R + 14);
+    viewport.append("circle").attr("class", "hull").attr("r", R - 14);
+    viewport.append("circle").attr("class", "ring").attr("r", R);
+
+    /* Раскладка в координатах кольца: блоки по кругу, карточки рядами внутри у своего блока. */
+    const angleOf = n => -Math.PI / 2 + (n - 1) * (2 * Math.PI / BLOCKS.length);
+    const hubs = BLOCKS.map(b => {
+      const a = angleOf(b.n);
+      return { kind: "hub", key: "b" + b.n, b: b, a: a, x: R * Math.cos(a), y: R * Math.sin(a), count: cardsOf(b.n).length, order: b.n * 1000 };
+    });
+
+    const cards = [];
+    const PER_ROW = 4;
+    hubs.forEach(h => {
+      const list = cardsOf(h.b.n);
+      list.forEach((c, i) => {
+        const row = Math.floor(i / PER_ROW);
+        const inRow = Math.min(PER_ROW, list.length - row * PER_ROW);
+        const r = R - 70 - row * 44;
+        const a = h.a + ((i % PER_ROW) - (inRow - 1) / 2) * (38 / r);
+        const x = r * Math.cos(a), y = r * Math.sin(a);
+        const dx = x - r * Math.cos(h.a);
+        cards.push({
+          kind: "card", key: "k" + c.id, c: c, hub: h, a: a, x: x, y: y,
+          side: Math.abs(dx) < 1 ? 0 : Math.sign(dx),
+          order: h.b.n * 1000 + i + 1
+        });
+      });
+    });
+    const nodes = hubs.concat(cards);
+    const nodeByKey = new Map(nodes.map(d => [d.key, d]));
+
+    const chords = [];
+    CARDS.forEach(c => (c.links || []).forEach(t => {
+      const s = nodeByKey.get("k" + c.id);
+      const e = nodeByKey.get("k" + t);
+      if (s && e) chords.push({ s: s, t: e });
+    }));
+
+    const docks = viewport.append("g").selectAll("line").data(cards).join("line")
+      .attr("class", "dock")
+      .attr("x1", d => d.hub.x).attr("y1", d => d.hub.y)
+      .attr("x2", d => d.x).attr("y2", d => d.y);
+
+    const chordSel = viewport.append("g").selectAll("path").data(chords).join("path")
+      .attr("class", "chord")
+      .attr("d", d => {
+        const near = Math.hypot(d.s.x - d.t.x, d.s.y - d.t.y) < 160;
+        const f = near ? 0.82 : 0.35;
+        const cx = (d.s.x + d.t.x) / 2 * f;
+        const cy = (d.s.y + d.t.y) / 2 * f;
+        return "M" + d.s.x + "," + d.s.y + " Q" + cx + "," + cy + " " + d.t.x + "," + d.t.y;
+      });
+
+    const hubSel = viewport.append("g").selectAll("g").data(hubs).join("g")
+      .attr("class", d => "node hub" + (d.count ? "" : " is-empty") + (d.b.next ? " is-next" : ""))
+      .attr("transform", d => "translate(" + d.x + "," + d.y + ")")
+      .attr("tabindex", 0)
+      .attr("role", "link")
+      .attr("aria-label", d => "Блок " + d.b.n + ": " + d.b.name);
+    hubSel.append("title").text(d => "Блок " + d.b.n + ". " + d.b.name);
+    hubSel.append("circle").attr("class", "hit");
+    hubSel.append("circle").attr("class", "halo");
+    hubSel.append("circle").attr("class", "dot");
+    const hubText = hubSel.append("text").attr("class", "hub-label");
+    hubText.append("tspan").attr("class", "num").text(d => d.b.n + " ");
+    hubText.append("tspan").attr("class", "ttl").text(d => d.b.short);
+
+    const cardSel = viewport.append("g").selectAll("g").data(cards).join("g")
+      .attr("class", d => "node card" + (d.c.status ? " status-" + d.c.status : ""))
+      .attr("transform", d => "translate(" + d.x + "," + d.y + ")")
+      .attr("tabindex", 0)
+      .attr("role", "link")
+      .attr("aria-label", d => "Карточка " + d.c.id + ": " + d.c.title);
+    cardSel.append("title").text(d => d.c.id + " " + d.c.title);
+    cardSel.append("circle").attr("class", "hit");
+    cardSel.append("circle").attr("class", "halo");
+    cardSel.append("circle").attr("class", "dot");
+    const cardText = cardSel.append("text").attr("class", "card-label");
+    cardText.append("tspan").attr("class", "num").text(d => d.c.id + " ");
+    cardText.append("tspan").attr("class", "ttl").text(d => d.c.title);
+
+    hubText.each(function (d) { d.textEl = this; d.numEl = this.firstChild; });
+    cardText.each(function (d) { d.textEl = this; d.numEl = this.firstChild; });
+
+    const allNodes = viewport.selectAll(".node");
+
+    /* Точки и подписи держат экранный размер: при приближении узлы расходятся, подписи остаются читаемыми. */
+    let scale = 0.5;
+    let k = 1;
+    let cur = null;
+    let measured = false;
+    let selKey = null;
+    let neighbors = new Set();
+    const px = v => v / (scale * k);
+    const dotR = d => (d.kind === "hub" ? (d.count ? cur.hubR : cur.hubR * 0.72) : cur.cardR);
+
+    function applySizes() {
+      cur = {
+        hubFs: px(12.5), cardFs: px(11.5),
+        hubR: px(5.5), cardR: px(4.5), ring: px(3.5), hit: px(16), cardHit: px(12)
+      };
+      svg.style("--hub-fs", cur.hubFs + "px").style("--card-fs", cur.cardFs + "px");
+      hubSel.select(".dot").attr("r", dotR);
+      hubSel.select(".halo").attr("r", d => dotR(d) + cur.ring);
+      hubSel.select(".hit").attr("r", cur.hit);
+      cardSel.select(".dot").attr("r", cur.cardR);
+      cardSel.select(".halo").attr("r", cur.cardR + cur.ring);
+      cardSel.select(".hit").attr("r", cur.cardHit);
+    }
+
+    function measure() {
+      allNodes.classed("label-hidden", false).classed("label-short", false);
+      nodes.forEach(d => {
+        const fs = d.kind === "hub" ? cur.hubFs : cur.cardFs;
+        let full = 0, id = 0;
+        try {
+          full = d.textEl.getComputedTextLength();
+          id = d.numEl.getComputedTextLength();
+        } catch (err) { /* ниже есть грубая оценка */ }
+        const chars = d.kind === "hub" ? (d.b.n + " " + d.b.short).length : (d.c.id + " " + d.c.title).length;
+        d.w1 = full > 0 ? full / fs : chars * 0.6;
+        d.w1id = id > 0 ? id / fs : (d.kind === "hub" ? String(d.b.n).length + 1 : d.c.id.length + 1) * 0.62;
+      });
+    }
+
+    function hubCandidates(d) {
+      const c = Math.cos(d.a), s = Math.sin(d.a);
+      const r = dotR(d);
+      const off = r + cur.hubFs * 0.5;
+      if (c > 0.25) return [{ anchor: "start", x: c * off, y: s * off, mid: true }];
+      if (c < -0.25) return [{ anchor: "end", x: c * off, y: s * off, mid: true }];
+      return [s < 0
+        ? { anchor: "middle", x: 0, y: -(r + cur.hubFs * 0.35), mid: false }
+        : { anchor: "middle", x: 0, y: r + cur.hubFs * 1.0, mid: false }];
+    }
+
+    function cardCandidates(d) {
+      const c = Math.cos(d.a), s = Math.sin(d.a);
+      const fs = cur.cardFs;
+      const gap = cur.cardR + px(5);
+      const line = fs * 1.2;
+      const at = (dir, shift) => (dir < 0
+        ? { anchor: "end", x: -gap, y: shift * line, mid: true }
+        : { anchor: "start", x: gap, y: shift * line, mid: true });
+      const inward = s < 0
+        ? { anchor: "middle", x: 0, y: gap + fs + px(2), mid: false }
+        : { anchor: "middle", x: 0, y: -(gap + fs * 0.3 + px(2)), mid: false };
+      const dir = c > 0.3 ? -1 : c < -0.3 ? 1 : d.side;
+      const list = [];
+      if (dir !== 0) [0, -0.6, 0.6, -1.2, 1.2].forEach(sh => list.push(at(dir, sh)));
+      list.push(inward);
+      const other = dir === 0 ? [1, -1] : [-dir];
+      other.forEach(o => [0, -0.6, 0.6].forEach(sh => list.push(at(o, sh))));
+      return list;
+    }
+
+    function boxOf(d, cand, fs, w) {
+      const x = d.x + cand.x, y = d.y + cand.y;
+      const x1 = cand.anchor === "start" ? x : cand.anchor === "end" ? x - w : x - w / 2;
+      return cand.mid
+        ? { x1: x1, y1: y - fs * 0.62, x2: x1 + w, y2: y + fs * 0.62 }
+        : { x1: x1, y1: y - fs * 0.88, x2: x1 + w, y2: y + fs * 0.28 };
+    }
+    const overlap = (a, b) => a.x1 < b.x2 && a.x2 > b.x1 && a.y1 < b.y2 && a.y2 > b.y1;
+
+    function rank(d) {
+      if (d.key === selKey) return 0;
+      if (neighbors.has(d.key)) return 1;
+      return d.kind === "hub" ? 2 : 3;
+    }
+
+    /* Подписи ставятся по важности: каждая ищет свободное место, иначе остаётся номер, иначе прячется. */
+    function placeLabels() {
+      if (!cur) return;
+      const pad = px(3);
+      const taken = nodes.map(d => {
+        const r = dotR(d) + pad;
+        return { key: d.key, x1: d.x - r, y1: d.y - r, x2: d.x + r, y2: d.y + r };
+      });
+      const isFree = (b, key) => !taken.some(o => o.key !== key && overlap(b, o));
+      nodes.slice().sort((a, b) => rank(a) - rank(b) || a.order - b.order).forEach(d => {
+        const fs = d.kind === "hub" ? cur.hubFs : cur.cardFs;
+        const cands = d.kind === "hub" ? hubCandidates(d) : cardCandidates(d);
+        const tryWidth = w => {
+          for (const cand of cands) {
+            const b = boxOf(d, cand, fs, w);
+            if (isFree(b, d.key)) { b.key = d.key; taken.push(b); return cand; }
+          }
+          return null;
+        };
+        let chosen = tryWidth(d.w1 * fs);
+        let idOnly = false;
+        if (!chosen && d.kind === "card") {
+          chosen = tryWidth(d.w1id * fs);
+          idOnly = !!chosen;
+        }
+        if (!chosen && d.key === selKey) {
+          chosen = cands[0];
+          const b = boxOf(d, chosen, fs, d.w1 * fs);
+          b.key = d.key;
+          taken.push(b);
+        }
+        d.labelHidden = !chosen;
+        d.labelShort = idOnly;
+        if (chosen) {
+          d3.select(d.textEl)
+            .attr("x", chosen.x)
+            .attr("y", chosen.y)
+            .attr("dy", chosen.mid ? "0.35em" : "0")
+            .attr("text-anchor", chosen.anchor);
+        }
+      });
+      allNodes.classed("label-hidden", d => d.labelHidden).classed("label-short", d => d.labelShort);
+    }
+
+    let raf = 0;
+    const zoom = d3.zoom()
+      .scaleExtent([0.6, 6])
+      .clickDistance(6)
+      .on("zoom", e => {
+        viewport.attr("transform", e.transform);
+        k = e.transform.k;
+        if (!raf) {
+          raf = requestAnimationFrame(() => {
+            raf = 0;
+            applySizes();
+            placeLabels();
+          });
+        }
+      });
+    svg.call(zoom).on("dblclick.zoom", null);
+
+    const dur = reduceMotion ? 0 : 220;
+    document.getElementById("zin").addEventListener("click", () => svg.transition().duration(dur).call(zoom.scaleBy, 1.4));
+    document.getElementById("zout").addEventListener("click", () => svg.transition().duration(dur).call(zoom.scaleBy, 1 / 1.4));
+    document.getElementById("zfit").addEventListener("click", () => svg.transition().duration(dur).call(zoom.transform, d3.zoomIdentity));
+
+    function open(d) {
+      fromGraph = true;
+      if (location.hash === "#" + d.key) route();
+      else location.hash = d.key;
+    }
+    allNodes
+      .on("click", (e, d) => open(d))
+      .on("keydown", (e, d) => {
+        if (e.key === "Enter" || e.key === " ") { e.preventDefault(); open(d); }
+      });
+
+    function select(r) {
+      selKey = null;
+      neighbors = new Set();
+      if (r.type === "hub") {
+        selKey = "b" + r.n;
+        cardsOf(r.n).forEach(c => neighbors.add("k" + c.id));
+      } else if (r.type === "card") {
+        const c = byId.get(r.id);
+        selKey = "k" + c.id;
+        neighbors.add("b" + c.block);
+        (c.links || []).forEach(t => neighbors.add("k" + t));
+        backlinks(c.id).forEach(x => neighbors.add("k" + x.id));
+      }
+      svg.classed("has-selection", !!selKey);
+      allNodes
+        .classed("is-selected", d => d.key === selKey)
+        .classed("is-neighbor", d => neighbors.has(d.key))
+        .attr("aria-current", d => (d.key === selKey ? "page" : null));
+      docks.classed("is-lit", d => !!selKey && (d.key === selKey || d.hub.key === selKey));
+      chordSel.classed("is-lit", d => !!selKey && (d.s.key === selKey || d.t.key === selKey));
+      placeLabels();
+    }
+
+    function relayout() {
+      const box = svg.node().getBoundingClientRect();
+      if (!box.width || !box.height) return;
+      scale = Math.min(box.width, box.height) / 1200;
+      applySizes();
+      if (!measured) { measure(); measured = true; }
+      placeLabels();
+    }
+
+    relayout();
+    if ("ResizeObserver" in window) new ResizeObserver(() => relayout()).observe(svg.node());
+    else window.addEventListener("resize", relayout);
+    if (document.fonts && document.fonts.ready) {
+      document.fonts.ready.then(() => { measured = false; relayout(); });
+    }
+
+    return { select: select };
+  }
+
+  let graph = { select: function () {} };
+  try {
+    graph = initGraph();
+  } catch (err) {
+    document.querySelector(".graph-panel").classList.add("is-offline");
+  }
+
+  /* ---------- переходы ---------- */
+  function route() {
+    const r = parseHash();
+    if (r.type === "hub") pane.innerHTML = renderHub(r.n);
+    else if (r.type === "card") pane.innerHTML = renderCard(r.id);
+    else pane.innerHTML = renderOverview();
+    graph.select(r);
+    if (fromGraph && window.matchMedia("(max-width: 899px)").matches) {
+      pane.scrollIntoView({ behavior: reduceMotion ? "auto" : "smooth", block: "start" });
+    } else if (!fromGraph && pane.getBoundingClientRect().top < 0) {
+      pane.scrollIntoView({ block: "start" });
+    }
+    fromGraph = false;
+  }
+
+  window.addEventListener("hashchange", route);
+  route();
+})();
+</script>
+
+</body></html>
